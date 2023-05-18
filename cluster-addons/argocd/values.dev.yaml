@@ -23,3 +23,15 @@ argo-cd:
         - secretName: issuer-letsencrypt
           hosts:
             - argocd.argouniverse.com
+
+      # Dex configuration
+  dex.config: |
+    connectors: 
+      - type: github
+        id: github
+        name: GitHub
+        config:
+          clientID: 10e2da5b7724c0744a35
+          clientSecret: $dex.github.clientSecret
+          orgs:
+          - name: argo-universe
