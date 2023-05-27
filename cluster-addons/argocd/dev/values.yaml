@@ -29,18 +29,18 @@ argo-cd:
       statusbadge.enabled: "true"
       url: "https://argocd.argouniverse.com"
       users.anonymous.enabled: "true"
-      # dex.config: |
-      #   connectors: 
-      #     - type: github
-      #       id: github
-      #       name: GitHub
-      #       config:
-      #         clientID: 10e2da5b7724c0744a35
-      #         clientSecret: $github-sso-client-secret:dex.github.clientSecret 
-      #         orgs:
-      #         - name: argo-universe
-      #           teams:
-      #           - argouniverse-admins
+      dex.config: |
+        connectors: 
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: 10e2da5b7724c0744a35
+              clientSecret: $github-sso-client-secret:dex.github.clientSecret 
+              orgs:
+              - name: argo-universe
+                teams:
+                - argouniverse-admins
     rbacConfig:
       # {}
       # policy.csv is an file containing user-defined RBAC policies and role definitions (optional).
