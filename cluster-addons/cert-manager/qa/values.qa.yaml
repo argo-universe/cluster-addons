@@ -1,0 +1,10 @@
+config:
+  namespace: cert-manager
+
+# Default value for all environments
+acmeEmail: example@msn.com
+
+cert-manager:
+  installCRDs: true
+  webhook:
+    securePort: 10260  
