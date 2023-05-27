@@ -1,9 +1,9 @@
 config:
   namespace: cert-manager
 
-acmeEmail: info@argouniverse.com
 
 cert-manager:
+  acmeEmail: info@argouniverse.com
   installCRDs: true
   webhook:
     securePort: 10260
