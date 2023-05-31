@@ -1,0 +1,54 @@
+config:
+  namespace: argocd
+
+argo-cd:
+  configs:
+    timeout:
+      reconciliation: 10s
+    styles: |
+      .sidebar {
+        background: linear-gradient(to bottom, #149431,#30303d,#30303d);
+      }
+
+  server:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-cluster-issuer
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      hosts:
+        - argocd.argouniverse.com
+      tls:
+        - secretName: issuer-letsencrypt
+          hosts:
+            - argocd.argouniverse.com
+    config:
+      admin.enabled: 'true'
+      statusbadge.enabled: "true"
+      url: "https://argocd.argouniverse.com"
+      users.anonymous.enabled: "true"
+      dex.config: |
+        connectors: 
+          - type: github
+            id: github
+            name: GitHub
+            config:
+              clientID: 10e2da5b7724c0744a35
+              clientSecret: $github-sso-client-secret:dex.github.clientSecret 
+              orgs:
+              - name: argo-universe
+                teams:
+                - argouniverse-admins
+    rbacConfig:
+      # {}
+      # policy.csv is an file containing user-defined RBAC policies and role definitions (optional).
+      # Policy rules are in the form:
+      #   p, subject, resource, action, object, effect
+      # Role definitions and bindings are in the form:
+      #   g, subject, inherited-subject
+      # See https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md for additional information.
+      policy.csv: |
+        g, argo-universe:argouniverse-admins, role:admin
+      policy.default: 'role:readonly'             
