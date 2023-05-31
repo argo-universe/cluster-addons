@@ -29,6 +29,8 @@ argo-cd:
       statusbadge.enabled: "true"
       url: "https://argocd.argouniverse.com"
       users.anonymous.enabled: "true"
+      accounts.githubCI: apiKey, login
+      accounts.githubCI.enabled: true
       dex.config: |
         connectors: 
           - type: github
@@ -51,4 +53,7 @@ argo-cd:
       # See https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md for additional information.
       policy.csv: |
         g, argo-universe:argouniverse-admins, role:admin
+        g, githubCI, role:ci-sync
+        p, role:ci-sync, applications, get, */*, allow
+        p, role:ci-sync, applications, sync, */*, allow
       policy.default: 'role:readonly'             
