@@ -1,3 +1,6 @@
+config:
+  namespace: monitoring
+
 loki-stack: 
   loki:
     enabled: true
