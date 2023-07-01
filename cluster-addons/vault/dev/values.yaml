@@ -1,0 +1,6 @@
+config:
+  namespace: vault
+
+vault: 
+  injector:
+    enabled: "false"

@@ -1,0 +1,9 @@
+config:
+  namespace: argocd
+
+argo-cd:
+  configs:
+    styles: |
+      .sidebar {
+        background: linear-gradient(to bottom,#cf0000,#000);
+      }

@@ -1,0 +1,5 @@
+.vscode
+.DS_Store
+**/.DS_Store
+cluster-addons/argocd/charts
+cluster-addons/argocd/Chart.lock
